@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { InputTypeEnum } from 'src/app/shared/components/input/models/InputTypeEnum';
 
 @Component({
   selector: 'app-modal-formulario-usuario',
@@ -13,6 +14,7 @@ export class ModalFormularioUsuarioComponent {
   private nomeUsuario!: string;
   private dataNascimento!: Date;
   private classificacao!: string;
+  public inputTypes = InputTypeEnum;
 
   public nomeUsuarioForm: FormControl<string | null> = new FormControl('', [Validators.required]);
   public dataNascimentoForm: FormControl<string | null> = new FormControl('', [Validators.required]);
@@ -24,14 +26,13 @@ export class ModalFormularioUsuarioComponent {
 
   private ngOnInit(): void {
     this.inicializarFormulario();
-    console.log(this.idUsuario)
-    console.log(this.nomeUsuario)
   }
 
   private inicializarFormulario(): void {
     if (this.idUsuario) {
+      const dataFormatada = this.dataNascimento.toISOString().substring(0, 10);
       this.nomeUsuarioForm.setValue(this.nomeUsuario);
-      this.dataNascimentoForm.setValue(this.dataNascimento.toLocaleDateString());
+      this.dataNascimentoForm.setValue(dataFormatada);
       this.classificacaoForm.setValue(this.classificacao);
     }
   }

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { InputTypeEnum } from './models/InputTypeEnum';
 
 @Component({
   selector: 'app-input',
@@ -10,12 +11,13 @@ export class InputComponent {
 
   @Input() label!: string;
   @Input() formControl!: FormControl;
+  @Input() inputType!: InputTypeEnum;
 
   public inputErrorClass(): string {
     if (this.formControl.invalid) {
       return 'is-invalid';
     }
-    return 'is-valid'
+    return ''
   }
 
   public hasError(): boolean {
