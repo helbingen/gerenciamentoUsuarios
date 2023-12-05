@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { IHttpUsuario } from '../shared/models/IHttpUsuario';
 import { environment } from '../environments/environments';
+import { IHttpResponseUsuario } from '../shared/models/IHttpResponseUsuario';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class HttpService {
 
   // Deixei as tipagens das promises como any por não saber o que irá retornar o servidor, mas o ideal é sempre tipar.
 
-  private criarUsuario(body: IHttpUsuario): Promise<any> {
+  public criarUsuario(body: IHttpUsuario): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.post(environment.api + '/criarUsuarios', body)
         .subscribe({
@@ -28,9 +29,9 @@ export class HttpService {
     });
   }
 
-  private listarUsuarios(): Promise<any> {
+  public listarUsuarios(): Promise<IHttpResponseUsuario[]> {
     return new Promise((resolve, reject) => {
-      this.http.get(environment.api + '/listarUsuarios')
+      this.http.get<IHttpResponseUsuario[]>(environment.api + '/listarUsuarios')
         .subscribe({
           next: (data) => {
             // Sucesso na requisição
@@ -44,9 +45,9 @@ export class HttpService {
     });
   }
 
-  private editarUsuario(idUsuario: string): Promise<any> {
+  public editarUsuario(body: IHttpUsuario, idUsuario: string): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.put(environment.api + '/editarUsuario', idUsuario)
+      this.http.put(environment.api + '/editarUsuario/' + idUsuario, body)
         .subscribe({
           next: (data) => {
             // Sucesso na requisição
@@ -60,7 +61,7 @@ export class HttpService {
     });
   }
 
-  private excluirUsuario(idUsuario: string): Promise<any> {
+  public excluirUsuario(idUsuario: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.put(environment.api + '/excluirUsuario', idUsuario)
         .subscribe({

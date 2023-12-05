@@ -1,7 +1,6 @@
 <div class="listagem-usuario-content">
+  <button class="btn btn-primary" (click)="abrirModalFormularioUsuario()" >Adicionar usuário</button>
   <div class="row">
-    <div class="col">
-      <span class="text-bold">ID</span></div>
     <div class="col">
       <span class="text-bold">Nome</span></div>
     <div class="col">
@@ -11,7 +10,6 @@
   </div>
   <div *ngFor="let usuario of listaUsuarios">
     <app-usuario
-    [idUsuario]="usuario.idUsuario"
     [nomeUsuario]="usuario.nomeUsuario"
     [dataNascimento]="usuario.dataNascimento"
     [classificacao]="usuario.classificacao"

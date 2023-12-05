@@ -1,8 +1,14 @@
 <div class="usuario-content">
   <div class="row" (click)="abrirModalFormularioUsuario()">
-    <div class="col">{{idUsuario}}</div>
-    <div class="col">{{nomeUsuario}}</div>
-    <div class="col">{{dataNascimento.toLocaleDateString()}}</div>
-    <div class="col">{{classificacao}}</div>
+    <div class="col text-truncate">
+      <span [ngbTooltip]="nomeUsuario">{{nomeUsuario}}</span>
+    </div>
+    <div class="col text-truncate">
+      <span [ngbTooltip]="dataNascimento.toLocaleDateString()">
+      {{dataNascimento.toLocaleDateString()}}</span>
+    </div>
+    <div class="col text-truncate">
+      <span [ngbTooltip]="classificacao">{{classificacao}}</span>
+    </div>
   </div>
 </div>

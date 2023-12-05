@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { InputTypeEnum } from 'src/app/shared/components/input/models/InputTypeEnum';
+import { IUsuario } from '../models/IUsuario.interface';
 
 @Component({
   selector: 'app-modal-formulario-usuario',
@@ -11,11 +12,12 @@ import { InputTypeEnum } from 'src/app/shared/components/input/models/InputTypeE
 })
 export class ModalFormularioUsuarioComponent {
 
-  private idUsuario!: number;
-  private nomeUsuario!: string;
-  private dataNascimento!: Date;
-  private classificacao!: string;
-  public inputTypes = InputTypeEnum;
+  @Input() nomeUsuario!: string;
+  @Input() dataNascimento!: Date;
+  @Input() classificacao!: string;
+  @Input() inputTypes = InputTypeEnum;
+  @Input() tituloModal!: string;
+  @Output() usuarioEvento: EventEmitter<IUsuario> = new EventEmitter<IUsuario>();
 
   public nomeUsuarioForm: FormControl<string | null> = new FormControl('', [Validators.required]);
   public dataNascimentoForm: FormControl<string | null> = new FormControl('', [Validators.required]);
@@ -30,12 +32,12 @@ export class ModalFormularioUsuarioComponent {
   }
 
   private inicializarFormulario(): void {
-    if (this.idUsuario) {
+    if (this.dataNascimento) {
       const dataFormatada = this.dataNascimento.toISOString().substring(0, 10);
-      this.nomeUsuarioForm.setValue(this.nomeUsuario);
       this.dataNascimentoForm.setValue(dataFormatada);
-      this.classificacaoForm.setValue(this.classificacao);
     }
+    this.nomeUsuarioForm.setValue(this.nomeUsuario);
+    this.classificacaoForm.setValue(this.classificacao);
   }
 
   public desabilitarBotaoConfirmacao(): boolean {
@@ -45,8 +47,17 @@ export class ModalFormularioUsuarioComponent {
     return false;
   }
 
+  private buildUsuario(): IUsuario {
+    const usuario: IUsuario = {
+      nomeUsuario: this.nomeUsuarioForm.value!,
+      dataNascimento: new Date(this.dataNascimentoForm.value!),
+      classificacao: this.classificacaoForm.value!,
+    }
+    return usuario;
+  }
+
   public salvarAlteracoes(): void {
-    this.toastr.success('Usuário alterado')
+    this.usuarioEvento.emit(this.buildUsuario())
     this.activeModal.close();
   }
 
