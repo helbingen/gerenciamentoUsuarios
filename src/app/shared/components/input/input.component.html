@@ -1,0 +1,7 @@
+<form>
+<div class="input-content">
+  <div class="input-label">{{label}} *</div>
+  <input class="form-control" [type]="inputType" [ngClass]="inputErrorClass()" [formControl]="formControl" [placeholder]="label">
+  <div class="error-message" *ngIf="hasError()">{{label}} é obrigatório.</div>
+</div>
+</form>

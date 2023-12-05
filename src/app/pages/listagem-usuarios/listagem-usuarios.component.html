@@ -1,0 +1,26 @@
+<div class="listagem-usuario-content">
+  <button class="btn btn-primary" (click)="abrirModalFormularioUsuario()" >Adicionar usuário</button>
+  <div class="tabela-usuarios" *ngIf="listaUsuarios.length > 0 else nenhumUsuarioAdicionado;">
+    <div class="row">
+      <div class="col">
+        <span class="text-bold">Nome</span></div>
+      <div class="col">
+        <span class="text-bold">Data de nascimento</span></div>
+      <div class="col">
+        <span class="text-bold">Classificação</span></div>
+    </div>
+    <div *ngFor="let usuario of listaUsuarios">
+      <app-usuario
+      [nomeUsuario]="usuario.nomeUsuario"
+      [dataNascimento]="usuario.dataNascimento"
+      [classificacao]="usuario.classificacao"
+      ></app-usuario>
+    </div>
+  </div>
+
+  <ng-template #nenhumUsuarioAdicionado>
+    <div class="d-flex justify-content-center p-5">
+      <app-nenhum-usuario></app-nenhum-usuario>
+    </div>
+  </ng-template>
+</div>
