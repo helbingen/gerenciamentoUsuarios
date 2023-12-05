@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http'
 import { IHttpUsuario } from '../shared/models/IHttpUsuario';
 import { environment } from '../environments/environments';
 import { IHttpResponseUsuario } from '../shared/models/IHttpResponseUsuario';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private toastr: ToastrService) { }
 
   // Deixei as tipagens das promises como any por não saber o que irá retornar o servidor, mas o ideal é sempre tipar.
 
@@ -18,11 +19,10 @@ export class HttpService {
       this.http.post(environment.api + '/criarUsuarios', body)
         .subscribe({
           next: (data) => {
-            // Sucesso na requisição
             resolve(data);
           },
           error: (error) => {
-            // Erro na requisição
+            this.toastr.error('Falha ao criar usuário');
             reject(error);
           }
         });
@@ -34,11 +34,10 @@ export class HttpService {
       this.http.get<IHttpResponseUsuario[]>(environment.api + '/listarUsuarios')
         .subscribe({
           next: (data) => {
-            // Sucesso na requisição
             resolve(data);
           },
           error: (error) => {
-            // Erro na requisição
+            this.toastr.error('Falha ao listar usuário');
             reject(error);
           }
         });
@@ -50,11 +49,10 @@ export class HttpService {
       this.http.put(environment.api + '/editarUsuario/' + idUsuario, body)
         .subscribe({
           next: (data) => {
-            // Sucesso na requisição
             resolve(data);
           },
           error: (error) => {
-            // Erro na requisição
+            this.toastr.error('Falha ao editar usuário');
             reject(error);
           }
         });
@@ -66,11 +64,10 @@ export class HttpService {
       this.http.put(environment.api + '/excluirUsuario', idUsuario)
         .subscribe({
           next: (data) => {
-            // Sucesso na requisição
             resolve(data);
           },
           error: (error) => {
-            // Erro na requisição
+            this.toastr.error('Falha ao excluir usuário');
             reject(error);
           }
         });

@@ -24,26 +24,26 @@ export class ListagemUsuariosComponent {
   }
 
   public listaUsuarios: IUsuario[] = [
-    // {
-    //   nomeUsuario: 'Daniel Helbingen',
-    //   dataNascimento: new Date('08/24/1995'),
-    //   classificacao: 'new Member',
-    // },
-    // {
-    //   nomeUsuario: 'Daniel Helbingen',
-    //   dataNascimento: new Date('08/24/1995'),
-    //   classificacao: 'new Member',
-    // },
-    // {
-    //   nomeUsuario: 'Daniel Helbingen',
-    //   dataNascimento: new Date('08/24/1995'),
-    //   classificacao: 'new Member',
-    // },
-    // {
-    //   nomeUsuario: 'Daniel Helbingen',
-    //   dataNascimento: new Date('08/24/1995'),
-    //   classificacao: 'new Member',
-    // },
+    {
+      nomeUsuario: 'Luara Burgos de Quintana',
+      dataNascimento: new Date('08/24/1995'),
+      classificacao: 'Professora',
+    },
+    {
+      nomeUsuario: 'Luciano Sérgio de Fonseca',
+      dataNascimento: new Date('03/14/1994'),
+      classificacao: 'Professor',
+    },
+    {
+      nomeUsuario: 'Samuel Ivan Esteves Sobrinho',
+      dataNascimento: new Date('08/11/2013'),
+      classificacao: 'Aluno',
+    },
+    {
+      nomeUsuario: 'Vicente Álvaro Dias',
+      dataNascimento: new Date('01/01/2010'),
+      classificacao: 'Aluno',
+    },
   ]
 
   public async abrirModalFormularioUsuario(): Promise<void> {
@@ -53,7 +53,7 @@ export class ListagemUsuariosComponent {
     modalRef.componentInstance.usuarioEvento.subscribe(async (response: IUsuario) => {
       if (response) {
         await this.httpService.criarUsuario(response);
-        this.toastr.success('Usuário editado');
+        this.toastr.success('Usuário criado com sucesso!');
         this.listarUsuarios();
       }
     })
