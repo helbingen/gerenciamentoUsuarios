@@ -15,35 +15,35 @@ export class ListagemUsuariosComponent {
 
   constructor(public httpService: HttpService, private ngbModal: NgbModal, private toastr: ToastrService) { }
 
-  // private ngOnInit(): void {
-  //   this.listarUsuarios();
-  // }
+  private ngOnInit(): void {
+    this.listarUsuarios();
+  }
 
-  // private async listarUsuarios(): Promise<void> {
-  //   this.listaUsuarios = await this.httpService.listarUsuarios();
-  // }
+  private async listarUsuarios(): Promise<void> {
+    this.listaUsuarios = await this.httpService.listarUsuarios();
+  }
 
   public listaUsuarios: IUsuario[] = [
-    {
-      nomeUsuario: 'Daniel Helbingen',
-      dataNascimento: new Date('08/24/1995'),
-      classificacao: 'new Member',
-    },
-    {
-      nomeUsuario: 'Daniel Helbingen',
-      dataNascimento: new Date('08/24/1995'),
-      classificacao: 'new Member',
-    },
-    {
-      nomeUsuario: 'Daniel Helbingen',
-      dataNascimento: new Date('08/24/1995'),
-      classificacao: 'new Member',
-    },
-    {
-      nomeUsuario: 'Daniel Helbingen',
-      dataNascimento: new Date('08/24/1995'),
-      classificacao: 'new Member',
-    },
+    // {
+    //   nomeUsuario: 'Daniel Helbingen',
+    //   dataNascimento: new Date('08/24/1995'),
+    //   classificacao: 'new Member',
+    // },
+    // {
+    //   nomeUsuario: 'Daniel Helbingen',
+    //   dataNascimento: new Date('08/24/1995'),
+    //   classificacao: 'new Member',
+    // },
+    // {
+    //   nomeUsuario: 'Daniel Helbingen',
+    //   dataNascimento: new Date('08/24/1995'),
+    //   classificacao: 'new Member',
+    // },
+    // {
+    //   nomeUsuario: 'Daniel Helbingen',
+    //   dataNascimento: new Date('08/24/1995'),
+    //   classificacao: 'new Member',
+    // },
   ]
 
   public async abrirModalFormularioUsuario(): Promise<void> {
@@ -54,6 +54,7 @@ export class ListagemUsuariosComponent {
       if (response) {
         await this.httpService.criarUsuario(response);
         this.toastr.success('Usuário editado');
+        this.listarUsuarios();
       }
     })
   }

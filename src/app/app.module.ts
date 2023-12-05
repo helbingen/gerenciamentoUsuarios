@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
 import { InputModule } from './shared/components/input/input.module';
+import { NenhumUsuarioComponent } from './pages/nenhum-usuario/nenhum-usuario.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { InputModule } from './shared/components/input/input.module';
     ListagemUsuariosComponent,
     UsuarioComponent,
     ModalFormularioUsuarioComponent,
+    NenhumUsuarioComponent,
   ],
   imports: [
     BrowserModule,
