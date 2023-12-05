@@ -61,7 +61,7 @@ export class HttpService {
 
   public excluirUsuario(idUsuario: string): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.put(environment.api + '/excluirUsuario', idUsuario)
+      this.http.delete(environment.api + '/excluirUsuario/' + idUsuario)
         .subscribe({
           next: (data) => {
             resolve(data);
