@@ -9,6 +9,8 @@ import { UsuarioComponent } from './pages/listagem-usuarios/usuario/usuario.comp
 import { ModalFormularioUsuarioComponent } from './pages/listagem-usuarios/modal-formulario-usuario/modal-formulario-usuario.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputComponent } from './shared/components/input/input.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { InputComponent } from './shared/components/input/input.component';
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

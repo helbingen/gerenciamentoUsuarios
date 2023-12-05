@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { InputTypeEnum } from 'src/app/shared/components/input/models/InputTypeEnum';
 
 @Component({
@@ -20,7 +21,7 @@ export class ModalFormularioUsuarioComponent {
   public dataNascimentoForm: FormControl<string | null> = new FormControl('', [Validators.required]);
   public classificacaoForm: FormControl<string | null> = new FormControl('', [Validators.required]);
 
-  constructor(public activeModal: NgbActiveModal) {
+  constructor(public activeModal: NgbActiveModal, private toastr: ToastrService) {
 
   }
 
@@ -45,7 +46,8 @@ export class ModalFormularioUsuarioComponent {
   }
 
   public salvarAlteracoes(): void {
-
+    this.toastr.success('Usuário alterado')
+    this.activeModal.close();
   }
 
 }

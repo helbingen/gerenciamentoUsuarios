@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="botoes pt-3 d-flex justify-content-end">
-      <button class="btn btn-primary" [disabled]="desabilitarBotaoConfirmacao()" >Salvar</button>
+      <button class="btn btn-primary" [disabled]="desabilitarBotaoConfirmacao()" (click)="salvarAlteracoes()" >Salvar</button>
       <button class="btn btn-light ms-2" (click)="activeModal.close()">Fechar</button>
     </div>
   </div>
